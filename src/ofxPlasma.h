@@ -19,6 +19,6 @@ public:
     void test(const std::string &pool_name);
     bool setup(const std::string &pool_name);
     bool putProtein(const Protein &protein);
-    Protein getNextProtein();
+    Protein getNextProtein(float timeout = 1.0 / 100.0);
     void shutdown();
 };

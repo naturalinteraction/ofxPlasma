@@ -29,23 +29,9 @@ void ofxPlasma::test(const std::string &pool_name)
 
         Protein both(Slaw(slaw_string ("descrip2")), Slaw(slaw_map_inline_cf ("key1", make_slaw((float)65.5), "key2", make_slaw((int)7), "key3", make_slaw("ciao"), NULL)));
 
-        ObRetort_DepositInfo ret = hose->Deposit (foo);
-
-        if (ret.IsError ())
-          printf ("we couldn't deposit: %s\n", ret.Description().utf8());
-        else
-          printf ("deposited! ts/index: %d, %f\n", (int)ret.index, ret.timestamp);
-
-        ObRetort_DepositInfo ret2 = hose->Deposit (pro);
-
-        if (ret2.IsError ())
-          printf ("we couldn't deposit: %s\n", ret2.Description().utf8());
-        else
-          printf ("deposited! ts/index: %d, %f\n", (int)ret2.index, ret2.timestamp);
-
-        ObRetort_DepositInfo ret3 = hose->Deposit (both);
-
-        // OB_DIE_ON_ERROR (hose->Rewind ().Code ());
+        printf("foo  %d\n", putProtein(foo));
+        printf("pro  %d\n", putProtein(pro));
+        printf("both %d\n", putProtein(both));
 
         ObRetort tort;
 
@@ -69,9 +55,9 @@ void ofxPlasma::test(const std::string &pool_name)
         shutdown();
 }
 
-Protein ofxPlasma::getNextProtein()
+Protein ofxPlasma::getNextProtein(float timeout)
 {
-  return hose -> Next (1.0 / 100.0);
+  return hose -> Next (timeout);
 }
 
 void ofxPlasma::shutdown()
@@ -92,7 +78,7 @@ bool ofxPlasma::putProtein(const Protein &protein)
         printf ("we couldn't deposit: %s\n", ret.Description().utf8());
         return false;
     }
-    printf ("deposited! ts/index: %d, %f\n", (int)ret.index, ret.timestamp);
+    // printf ("deposited! ts/index: %d, %f\n", (int)ret.index, ret.timestamp);
     return true;
 }
 
