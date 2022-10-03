@@ -5,10 +5,10 @@
 void ofxPlasma::test()
 {
         bool rewind_flag = false, exit_flag = false, spew_flag = false;
-        const Str pname = "update-pool";
+        const Str pname = "space-update-pool";
 
         ObRetort tort;
-        Hose *h = Pool::Participate (pname, &tort);
+        hose = Pool::Participate (pname, &tort);
 
         if (tort.IsError ())
         OB_FATAL_ERROR ("Couldn't participate in '%s' because '%s'\n",
@@ -37,31 +37,31 @@ void ofxPlasma::test()
 
         Protein both(Slaw(slaw_string ("descrip2")), Slaw(slaw_map_inline_cf ("key1", make_slaw((float)65.5), "key2", make_slaw((int)7), "key3", make_slaw("ciao"), NULL)));
 
-        ObRetort_DepositInfo ret = h->Deposit (foo);
+        ObRetort_DepositInfo ret = hose->Deposit (foo);
 
         if (ret.IsError ())
           printf ("we couldn't deposit: %s\n", ret.Description().utf8());
         else
           printf ("deposited! ts/index: %d, %f\n", (int)ret.index, ret.timestamp);
 
-        ObRetort_DepositInfo ret2 = h->Deposit (pro);
+        ObRetort_DepositInfo ret2 = hose->Deposit (pro);
 
         if (ret2.IsError ())
           printf ("we couldn't deposit: %s\n", ret2.Description().utf8());
         else
           printf ("deposited! ts/index: %d, %f\n", (int)ret2.index, ret2.timestamp);
 
-        ObRetort_DepositInfo ret3 = h->Deposit (both);
+        ObRetort_DepositInfo ret3 = hose->Deposit (both);
 
         if (rewind_flag)
-        OB_DIE_ON_ERROR (h->Rewind ().Code ());
+        OB_DIE_ON_ERROR (hose->Rewind ().Code ());
 
         // either wait one second or forever, depending on -x option
         pool_timestamp timeout = (exit_flag ? 1.0 : Hose::WAIT);
 
         for (;;)
         {
-          Protein p = h->Next (timeout);
+          Protein p = hose->Next (timeout);
           if (p.IsNull ())
             break;
 
@@ -76,6 +76,6 @@ void ofxPlasma::test()
           std::cout.flush ();
         }
 
-        OB_DIE_ON_ERROR (h->Withdraw ().Code ());
-        h->Delete ();
+        OB_DIE_ON_ERROR (hose->Withdraw ().Code ());
+        hose->Delete ();
 }
