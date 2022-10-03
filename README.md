@@ -5,9 +5,11 @@ An openFrameworks addon to integrate Oblong Industries' Plasma. Tested on Ubuntu
 
 This addon lives here: `https://github.com/naturalinteraction/ofxPlasma.git`
 
-The included license is that of Plasma.
+The included license is that of Plasma. You can freely use ofxPlasma as you wish.
 
 The easiest way to learn how to use this addon is to look at the included `/example`.
+
+This has been put together by me (Alessandro Valli, naturalinteract at gmail.com) and has nothing to do with Oblong Industries, Inc.
 
 # What is Plasma?
 
