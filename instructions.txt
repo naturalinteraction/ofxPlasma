@@ -1,9 +1,0 @@
-### Plasma
-
-This addon lives here: `https://github.com/naturalinteraction/ofxPlasma.git`
-
-To install plasma:
-- git clone `https://github.com/Oblong/plasma`
-- `sudo apt-get install libavahi-client-dev libavahi-core-dev`
-- follow the build instructions involving `ninja`
-- `sudo ninja install` will create `/include` and `/share`
