@@ -83,8 +83,10 @@ void ofxPlasma::shutdown()
     hose -> Delete ();
 }
 
-bool ofxPlasma::setup(const Str &pname)
+bool ofxPlasma::setup(const std::string &pool_name)
 {
+    Str pname = pool_name.c_str();
+
     if (hose != NULL)
     {
       printf("already participating\n");

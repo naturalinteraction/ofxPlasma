@@ -19,6 +19,6 @@ public:
     void test();
     Protein getNextProtein();
     void shutdown();
-    bool setup(const Str &pname);
+    bool setup(const std::string &pool_name);
 
 };
