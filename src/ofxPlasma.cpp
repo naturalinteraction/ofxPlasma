@@ -4,15 +4,7 @@
 
 void ofxPlasma::test()
 {
-        bool rewind_flag = false, exit_flag = false, spew_flag = false;
-        const Str pname = "space-update-pool";
-
-        ObRetort tort;
-        hose = Pool::Participate (pname, &tort);
-
-        if (tort.IsError ())
-        OB_FATAL_ERROR ("Couldn't participate in '%s' because '%s'\n",
-                        pname.utf8 (), tort.Description ().utf8 ());
+        setup("space-update-pool");
 
         Protein foo(slaw_string ("descrip"));
         // say(foo.Descrips ().IsList ());
@@ -53,29 +45,26 @@ void ofxPlasma::test()
 
         ObRetort_DepositInfo ret3 = hose->Deposit (both);
 
-        if (rewind_flag)
-        OB_DIE_ON_ERROR (hose->Rewind ().Code ());
+        // OB_DIE_ON_ERROR (hose->Rewind ().Code ());
 
-        // either wait one second or forever, depending on -x option
-        pool_timestamp timeout = (exit_flag ? 1.0 : Hose::WAIT);
+        ObRetort tort;
 
         for (;;)
         {
-          Protein p = hose->Next (timeout);
-          if (p.IsNull ())
-            break;
-
-          if (spew_flag)
-            p.Spew (std::cout);
-          else
-            {
-              Str s = p.ToSlaw ().ToString (&tort);
-              OB_DIE_ON_ERROR (tort.Code ());
-              std::cout << s.utf8 ();
-            }
-          std::cout.flush ();
+          Protein p = getNextProtein();
+          if (! p.IsNull ())
+          {
+              if (false)
+                p.Spew (std::cout);
+              else
+                {
+                  Str s = p.ToSlaw ().ToString (&tort);
+                  OB_DIE_ON_ERROR (tort.Code ());
+                  std::cout << s.utf8 ();
+                }
+              std::cout.flush ();
+          }
         }
 
-        OB_DIE_ON_ERROR (hose->Withdraw ().Code ());
-        hose->Delete ();
+        shutdown();
 }
