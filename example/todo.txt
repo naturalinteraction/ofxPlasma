@@ -1,8 +1,0 @@
-The example folder should contain the example source and project files (the same style that you would normally find in apps/examples/someExample
-ofxMyAddon/example/MyAddonExample.xcodeproj
-... //other project files for other platforms
-ofxMyAddon/example/src/main.cpp
-ofxMyAddon/example/src/ofApp.h
-ofxMyAddon/example/src/ofApp.cpp
-...
-ofxMyAddon/example/bin/data
