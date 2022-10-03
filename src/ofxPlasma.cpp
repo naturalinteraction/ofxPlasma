@@ -83,7 +83,7 @@ void ofxPlasma::shutdown()
     hose -> Delete ();
 }
 
-bool ofxPlasma::deposit(const Protein &protein)
+bool ofxPlasma::putProtein(const Protein &protein)
 {
     ObRetort_DepositInfo ret = hose -> Deposit (protein);
 

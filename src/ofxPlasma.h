@@ -18,7 +18,7 @@ public:
 
     void test(const std::string &pool_name);
     bool setup(const std::string &pool_name);
+    bool putProtein(const Protein &protein);
     Protein getNextProtein();
-    bool deposit(const Protein &protein);
     void shutdown();
 };
