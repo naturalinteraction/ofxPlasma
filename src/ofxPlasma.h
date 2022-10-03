@@ -20,6 +20,22 @@ public:
     Protein getNextProtein(float timeout = 1.0 / 100.0);
     void shutdown();
 
+    inline bool proteinDescripIs(const Protein &p, const char* value)
+    {
+        return (p.Descrips ().Nth (0).Emit<Str> () == value);
+    }
+
+    inline std::string extractIngestAsString(const Protein &p, const char *name)
+    {
+        std::string s = p.Ingests ().Find(name).Emit<Str> ().utf8();
+        return s;
+    }
+
+    inline float extractIngestAsFloat(const Protein &p, const char *name)
+    {
+        return p.Ingests ().Find(name).Emit<float> ();
+    }
+
 protected:
 
     Hose * hose = NULL;
