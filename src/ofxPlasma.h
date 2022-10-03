@@ -12,8 +12,6 @@ class ofxPlasma
 
 public:
 
-    Hose * hose = NULL;
-
     ofxPlasma()  {}
 
     void test(const std::string &pool_name);
@@ -21,4 +19,12 @@ public:
     bool putProtein(const Protein &protein);
     Protein getNextProtein(float timeout = 1.0 / 100.0);
     void shutdown();
+
+protected:
+
+    Hose * hose = NULL;
 };
+
+#define make_descrip(descrip)   (Slaw(slaw_string(descrip)))
+#define make_ingests(...)       (Slaw(slaw_map_inline_cf(__VA_ARGS__)))
+#define make_ingest(key, value) key, make_slaw(value)
