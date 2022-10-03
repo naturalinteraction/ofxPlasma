@@ -16,9 +16,9 @@ public:
 
     ofxPlasma()  {}
 
-    void test();
-    Protein getNextProtein();
-    void shutdown();
+    void test(const std::string &pool_name);
     bool setup(const std::string &pool_name);
-
+    Protein getNextProtein();
+    bool deposit(const Protein &protein);
+    void shutdown();
 };

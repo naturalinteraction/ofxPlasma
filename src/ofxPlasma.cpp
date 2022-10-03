@@ -2,9 +2,9 @@
 #include "ofxPlasma.h"
 
 
-void ofxPlasma::test()
+void ofxPlasma::test(const std::string &pool_name)
 {
-        setup("space-update-pool");
+        setup(pool_name);
 
         Protein foo(slaw_string ("descrip"));
         // say(foo.Descrips ().IsList ());
@@ -81,6 +81,19 @@ void ofxPlasma::shutdown()
 
     OB_DIE_ON_ERROR (hose -> Withdraw ().Code ());
     hose -> Delete ();
+}
+
+bool ofxPlasma::deposit(const Protein &protein)
+{
+    ObRetort_DepositInfo ret = hose -> Deposit (protein);
+
+    if (ret.IsError ())
+    {
+        printf ("we couldn't deposit: %s\n", ret.Description().utf8());
+        return false;
+    }
+    printf ("deposited! ts/index: %d, %f\n", (int)ret.index, ret.timestamp);
+    return true;
 }
 
 bool ofxPlasma::setup(const std::string &pool_name)
