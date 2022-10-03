@@ -14,9 +14,7 @@ public:
 
     Hose * hose = NULL;
 
-    ofxPlasma()
-    {
-    }
+    ofxPlasma()  {}
 
     void test();
 
@@ -25,7 +23,7 @@ public:
       return hose -> Next (1.0 / 100.0);
     }
 
-    void withdrawHose()
+    void shutdown()
     {
         if (hose == NULL)
           return;
@@ -34,7 +32,7 @@ public:
         hose -> Delete ();
     }
 
-    bool participateInPool(const Str &pname)
+    bool setup(const Str &pname)
     {
         if (hose != NULL)
         {
