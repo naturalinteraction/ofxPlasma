@@ -93,7 +93,7 @@ bool ofxPlasma::setup(const std::string &pool_name)
     }
 
     ObRetort tort;
-    hose = Pool::Participate (pname, &tort);
+    hose = Pool::Participate (pname, Pool::MMAP_MEDIUM, &tort);  // Pool::MMAP_SMALL
 
     if (tort.IsError ())
     {
