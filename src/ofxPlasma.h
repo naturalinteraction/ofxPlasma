@@ -39,8 +39,13 @@ public:
     const unsigned char *extractIngestAsBuffer(const Protein &p, const char *name)
     {
         const unsigned char *data;
-        p.Ingests () . MapFind ("data") . Into (data);
+        p.Ingests () . MapFind (name) . Into (data);
         return data;
+    }
+
+    int64 extractIngestBufferSize(const Protein &p, const char *name)
+    {
+        return p.Ingests () . MapFind (name) . Count();
     }
 
 protected:

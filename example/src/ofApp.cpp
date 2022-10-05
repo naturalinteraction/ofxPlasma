@@ -52,7 +52,8 @@ void testApp::update()
             string val = plasma.extractIngestAsString(p, "key");
             printf("%f %s\n", x, val.c_str());
             const unsigned char *retrieved = plasma.extractIngestAsBuffer(p, "data");
-            // printf("size of retrieved buffer is %ld\n", sizeof(retrieved));  // 8, not 256
+            int bytes = plasma.extractIngestBufferSize(p, "data");
+            printf("bytes %d\n", bytes);
             printf("byte at index 199 is %d\n", retrieved[199]);
         }
     }  // for
