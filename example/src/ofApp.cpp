@@ -12,6 +12,7 @@ void testApp::setup()
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button)
 {
+    // also include some binary data
     unsigned char buffer[256];
     for (unsigned int i = 0; i < sizeof(buffer); i++)
         buffer[i] = i;
@@ -51,6 +52,7 @@ void testApp::update()
             float x = plasma.extractIngestAsFloat(p, "x");
             string val = plasma.extractIngestAsString(p, "key");
             printf("%f %s\n", x, val.c_str());
+            // also extract some binary data
             const unsigned char *retrieved = plasma.extractIngestAsBuffer(p, "data");
             int bytes = plasma.extractIngestBufferSize(p, "data");
             printf("bytes %d\n", bytes);
