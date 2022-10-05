@@ -12,14 +12,16 @@ void testApp::setup()
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button)
 {
-    unsigned char buffer[64] = {3};
+    unsigned char buffer[256];
+    for (unsigned int i = 0; i < sizeof(buffer); i++)
+        buffer[i] = i;
 
     // here we deposit a protein
     Protein protein(make_descrip("test-protein"),
                     make_ingests(   make_ingest("x", 67.7),
                                     make_ingest("n", 5),    // some ingest we will not metabolize
                                     make_ingest("key", "hello world"),
-                                    make_buffer_ingest("data", buffer, 64),
+                                    make_buffer_ingest("data", buffer, 256),
                                     NULL)
                                 );
     printf("%d\n", plasma.putProtein(protein));
@@ -50,8 +52,8 @@ void testApp::update()
             string val = plasma.extractIngestAsString(p, "key");
             printf("%f %s\n", x, val.c_str());
             const unsigned char *retrieved = plasma.extractIngestAsBuffer(p, "data");
-            printf("size of retrieved buffer is %ld\n", sizeof(retrieved));  // 8, not 64
-            printf("one byte is %d\n", (int)retrieved[0]);
+            // printf("size of retrieved buffer is %ld\n", sizeof(retrieved));  // 8, not 256
+            printf("byte at index 199 is %d\n", retrieved[199]);
         }
     }  // for
 }
