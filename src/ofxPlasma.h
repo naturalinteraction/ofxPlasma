@@ -36,6 +36,13 @@ public:
         return p.Ingests ().Find(name).Emit<float> ();
     }
 
+    const unsigned char *extractIngestAsBuffer(const Protein &p, const char *name)
+    {
+        const unsigned char *data;
+        p.Ingests () . MapFind ("data") . Into (data);
+        return data;
+    }
+
 protected:
 
     Hose * hose = NULL;
@@ -44,3 +51,4 @@ protected:
 #define make_descrip(descrip)   (Slaw(slaw_string(descrip)))
 #define make_ingests(...)       (Slaw(slaw_map_inline_cf(__VA_ARGS__)))
 #define make_ingest(key, value) key, make_slaw(value)
+#define make_buffer_ingest(key, buffer, size)  key, slaw_unt8_array(buffer, size)

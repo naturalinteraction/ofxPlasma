@@ -6,16 +6,20 @@ void testApp::setup()
     // the ofxPlasma class encapsulates a 'Hose'
     // here we participate in a pool (which must exist)
     plasma.setup("test-pool");
+    // plasma.test("test-pool");
 }
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button)
 {
+    unsigned char buffer[64] = {3};
+
     // here we deposit a protein
     Protein protein(make_descrip("test-protein"),
                     make_ingests(   make_ingest("x", 67.7),
                                     make_ingest("n", 5),    // some ingest we will not metabolize
                                     make_ingest("key", "hello world"),
+                                    make_buffer_ingest("data", buffer, 64),
                                     NULL)
                                 );
     printf("%d\n", plasma.putProtein(protein));
@@ -45,6 +49,9 @@ void testApp::update()
             float x = plasma.extractIngestAsFloat(p, "x");
             string val = plasma.extractIngestAsString(p, "key");
             printf("%f %s\n", x, val.c_str());
+            const unsigned char *retrieved = plasma.extractIngestAsBuffer(p, "data");
+            printf("size of retrieved buffer is %ld\n", sizeof(retrieved));  // 8, not 64
+            printf("one byte is %d\n", (int)retrieved[0]);
         }
     }  // for
 }
