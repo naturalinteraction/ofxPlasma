@@ -61,7 +61,7 @@ Use your package manager (brew, apt, yum, zypper, etc) to install them.
 
 To build on linux/intel mac, assuming you're in the same directory as this README:
 
-- `sudo apt-get install libavahi-client-dev libavahi-core-dev`
+- `sudo apt-get install libavahi-client-dev libavahi-core-dev libicu-dev`
 - `mkdir build`
 - `cd build`
 - `cmake -GNinja ..`
