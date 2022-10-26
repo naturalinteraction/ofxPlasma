@@ -1,4 +1,6 @@
 
+#ifdef __linux__
+
 #include "ofxPlasma.h"
 
 
@@ -105,3 +107,5 @@ bool ofxPlasma::setup(const std::string &pool_name)
 
     return true;
 }
+
+#endif
