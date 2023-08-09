@@ -50,18 +50,18 @@ transported and diffused.
 
 Building Plasma requires:
 
-- ninja
+- ninja-build
 - cmake
-- libyaml
+- libyaml (libyaml-dev libyaml-cpp-dev)
 - boost
-- icu4c
+- icu4c (libicu-dev)
 - openssl
 
 Use your package manager (brew, apt, yum, zypper, etc) to install them.
 
 To build on linux/intel mac, assuming you're in the same directory as this README:
 
-- `sudo apt-get install libavahi-client-dev libavahi-core-dev libicu-dev`
+- `sudo apt-get install libyaml-dev libyaml-cpp-dev ninja-build libicu-dev cmake libavahi-client-dev libavahi-core-dev libicu-dev`
 - `mkdir build`
 - `cd build`
 - `cmake -GNinja ..`
