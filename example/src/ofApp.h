@@ -1,6 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+
+#define byte uint8_t  // to avoid byte definition error in plasma
+
 #include "ofxPlasma.h"
 
 
